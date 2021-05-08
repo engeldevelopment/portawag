@@ -1,6 +1,8 @@
 name: Deploy app
 
 on:
+  push:
+    - main
   release:
     types:
       - created
