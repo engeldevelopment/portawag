@@ -1,8 +1,9 @@
 from .base import *
 
-DEBUG = False
 
-try:
-    from .local import *
-except ImportError:
-    pass
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': PROJECT_DIR / 'portafolio/db.sqlite3'
+    }
+}
