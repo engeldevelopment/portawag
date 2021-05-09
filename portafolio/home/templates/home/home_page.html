@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-{% load static wagtailuserbar wagtailimages_tags %}
+{% load static wagtailuserbar wagtailcore_tags wagtailsettings_tags wagtailimages_tags %}
+{% get_settings %}
 <html lang="es">
 
 <head>
@@ -77,10 +78,26 @@
 				</div>
 				<p class="lead mb-5">{{ self.about_me }}</p>
 				<div class="social-icons">
-					<a class="social-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
-					<a class="social-icon" href="#"><i class="fab fa-github"></i></a>
-					<a class="social-icon" href="#"><i class="fab fa-twitter"></i></a>
-					<a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a>
+					{% if settings.home.SocialMediaSetting.linkedin %}
+					<a class="social-icon" href="{{ settings.home.SocialMediaSetting.linkedin }}">
+						<i class="fab fa-linkedin-in"></i>
+					</a>
+					{% endif %}
+					{% if settings.home.SocialMediaSetting.facebook %}
+					<a class="social-icon" href="{{ settings.home.SocialMediaSetting.facebook }}">
+						<i class="fab fa-facebook-f"></i>
+					</a>
+					{% endif %}
+					{% if settings.home.SocialMediaSetting.github %}
+					<a class="social-icon" href="{{ settings.home.SocialMediaSetting.github }}">
+						<i class="fab fa-github"></i>
+					</a>
+					{% endif %}
+					{% if settings.home.SocialMediaSetting.gitlab %}
+					<a class="social-icon" href="{{ settings.home.SocialMediaSetting.gitlab }}">
+						<i class="fab fa-gitlab"></i>
+					</a>
+					{% endif %}
 				</div>
 			</div>
 		</section>
@@ -138,24 +155,12 @@
 		<!-- Education-->
 		<section class="resume-section" id="education">
 			<div class="resume-section-content">
-				<h2 class="mb-5">Education</h2>
-				<div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-					<div class="flex-grow-1">
-						<h3 class="mb-0">University of Colorado Boulder</h3>
-						<div class="subheading mb-3">Bachelor of Science</div>
-						<div>Computer Science - Web Development Track</div>
-						<p>GPA: 3.23</p>
-					</div>
-					<div class="flex-shrink-0"><span class="text-primary">August 2006 - May 2010</span></div>
-				</div>
-				<div class="d-flex flex-column flex-md-row justify-content-between">
-					<div class="flex-grow-1">
-						<h3 class="mb-0">James Buchanan High School</h3>
-						<div class="subheading mb-3">Technology Magnet Program</div>
-						<p>GPA: 3.56</p>
-					</div>
-					<div class="flex-shrink-0"><span class="text-primary">August 2002 - May 2006</span></div>
-				</div>
+				<h2 class="mb-5">Educación</h2>
+				{% for block in self.body %}
+					{% if block.block_type == 'studies' %}
+						{% include_block block %}
+                	{% endif %}
+				{% endfor %}
 			</div>
 		</section>
 		<hr class="m-0" />
