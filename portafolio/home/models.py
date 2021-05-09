@@ -1,10 +1,14 @@
 from django.db import models
 from wagtail.contrib.settings.models import BaseSetting
 from wagtail.contrib.settings.registry import register_setting
+from wagtail.core.fields import StreamField
 
 from wagtail.core.models import Page
 from wagtail.admin import edit_handlers
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.users.views.users import edit
+
+from portafolio.home import blocks
 
 
 class HomePage(Page):
@@ -22,6 +26,10 @@ class HomePage(Page):
         related_name='+'
     )
 
+    body = StreamField([
+        ('studies', blocks.StudyBlock()),
+    ], null=True, blank=True)
+
     content_panels = Page.content_panels + [
         edit_handlers.MultiFieldPanel([
             edit_handlers.FieldPanel('name', 'Mi nombre'),
@@ -31,7 +39,8 @@ class HomePage(Page):
             edit_handlers.FieldPanel('phone_number', 'Número telofónico'),
             edit_handlers.FieldPanel('about_me', 'Acerca de mi')
         ], "Información Básica"),
-        ImageChooserPanel('photo', 'Foto de Perfil')
+        ImageChooserPanel('photo', 'Foto de Perfil'),
+        edit_handlers.StreamFieldPanel('body'),
     ]
 
 
