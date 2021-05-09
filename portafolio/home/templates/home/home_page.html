@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-{% load static wagtailuserbar wagtailimages_tags %}
+{% load static wagtailuserbar wagtailsettings_tags wagtailimages_tags %}
+{% get_settings %}
 <html lang="es">
 
 <head>
@@ -77,10 +78,26 @@
 				</div>
 				<p class="lead mb-5">{{ self.about_me }}</p>
 				<div class="social-icons">
-					<a class="social-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
-					<a class="social-icon" href="#"><i class="fab fa-github"></i></a>
-					<a class="social-icon" href="#"><i class="fab fa-twitter"></i></a>
-					<a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a>
+					{% if settings.home.SocialMediaSetting.linkedin %}
+					<a class="social-icon" href="{{ settings.home.SocialMediaSetting.linkedin }}">
+						<i class="fab fa-linkedin-in"></i>
+					</a>
+					{% endif %}
+					{% if settings.home.SocialMediaSetting.facebook %}
+					<a class="social-icon" href="{{ settings.home.SocialMediaSetting.facebook }}">
+						<i class="fab fa-facebook-f"></i>
+					</a>
+					{% endif %}
+					{% if settings.home.SocialMediaSetting.github %}
+					<a class="social-icon" href="{{ settings.home.SocialMediaSetting.github }}">
+						<i class="fab fa-github"></i>
+					</a>
+					{% endif %}
+					{% if settings.home.SocialMediaSetting.gitlab %}
+					<a class="social-icon" href="{{ settings.home.SocialMediaSetting.gitlab }}">
+						<i class="fab fa-gitlab"></i>
+					</a>
+					{% endif %}
 				</div>
 			</div>
 		</section>
