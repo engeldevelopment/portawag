@@ -1,6 +1,16 @@
 from wagtail.core import blocks
 
 
+class SkillBlock(blocks.StructBlock):
+    icon = blocks.CharBlock(
+        help_text="Escribe el nombre del Icono. Ej. fa-node-js"
+    )
+
+    class Meta:
+        icon = "icon"
+        template = "home/blocks/skill_block.html"
+
+
 class StudyBlock(blocks.StructBlock):
     institution = blocks.CharBlock(
         help_text="Nombre de la Institución/Casa de Estudio."

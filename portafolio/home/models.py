@@ -28,6 +28,7 @@ class HomePage(Page):
 
     body = StreamField([
         ('studies', blocks.StudyBlock()),
+        ('skills', blocks.SkillBlock()),
     ], null=True, blank=True)
 
     content_panels = Page.content_panels + [
