@@ -156,10 +156,8 @@
 		<section class="resume-section" id="education">
 			<div class="resume-section-content">
 				<h2 class="mb-5">Educación</h2>
-				{% for block in self.body %}
-					{% if block.block_type == 'studies' %}
-						{% include_block block %}
-                	{% endif %}
+				{% for block in self.studies %}
+					{% include_block block %}
 				{% endfor %}
 			</div>
 		</section>
@@ -170,10 +168,8 @@
 				<h2 class="mb-5">Skills</h2>
 				<div class="subheading mb-3">Lenguages de programación y Herramientas</div>
 				<ul class="list-inline dev-icons">
-					{% for block in self.body %}
-						{% if block.block_type == "skills" %}
-							{% include_block block %}
-						{% endif %}
+					{% for block in self.skills %}
+						{% include_block block %}
 					{% endfor %}
 				</ul>
 				<div class="subheading mb-3">Workflow</div>

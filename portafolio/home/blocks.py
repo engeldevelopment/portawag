@@ -7,7 +7,7 @@ class SkillBlock(blocks.StructBlock):
     )
 
     class Meta:
-        icon = "icon"
+        icon = "cup"
         template = "home/blocks/skill_block.html"
 
 
@@ -26,5 +26,5 @@ class StudyBlock(blocks.StructBlock):
     )
 
     class Meta:
-        icon = "pencil"
+        icon = "edit"
         template = "home/blocks/study_block.html"
