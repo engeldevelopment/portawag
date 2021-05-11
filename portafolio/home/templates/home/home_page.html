@@ -168,28 +168,19 @@
 				<h2 class="mb-5">Skills</h2>
 				<div class="subheading mb-3">Lenguages de programación y Herramientas</div>
 				<ul class="list-inline dev-icons">
-					{% for block in self.skills %}
+				{% for block in self.skills_and_workflows %}
+                    {% if block.block_type == 'skills' %}
 						{% include_block block %}
-					{% endfor %}
+					{% endif %}
+				{% endfor %}
 				</ul>
 				<div class="subheading mb-3">Workflow</div>
 				<ul class="fa-ul mb-0">
-					<li>
-						<span class="fa-li"><i class="fas fa-check"></i></span>
-						Mobile-First, Responsive Design
-					</li>
-					<li>
-						<span class="fa-li"><i class="fas fa-check"></i></span>
-						Cross Browser Testing & Debugging
-					</li>
-					<li>
-						<span class="fa-li"><i class="fas fa-check"></i></span>
-						Cross Functional Teams
-					</li>
-					<li>
-						<span class="fa-li"><i class="fas fa-check"></i></span>
-						Agile Development & Scrum
-					</li>
+				{% for block in self.skills_and_workflows %}
+                    {% if block.block_type == 'workflows' %}
+						{% include_block block %}
+					{% endif %}
+				{% endfor %}
 				</ul>
 			</div>
 		</section>
