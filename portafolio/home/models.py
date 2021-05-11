@@ -1,6 +1,7 @@
 from django.db import models
 from wagtail.contrib.settings.models import BaseSetting
 from wagtail.contrib.settings.registry import register_setting
+from wagtail.core import fields
 from wagtail.core.fields import StreamField
 
 from wagtail.core.models import Page
@@ -38,6 +39,13 @@ class HomePage(Page):
         ('workflows', blocks.WorkflowBlock()),
     ], null=True, blank=True)
 
+    interests = fields.RichTextField(
+        "Mis Intereses",
+        null=True,
+        blank=True,
+        features=["bold", "italic"]
+    )
+
     content_panels = Page.content_panels + [
         edit_handlers.MultiFieldPanel([
             edit_handlers.FieldPanel('name', 'Mi nombre'),
@@ -46,13 +54,16 @@ class HomePage(Page):
             edit_handlers.FieldPanel('email', 'Correo'),
             edit_handlers.FieldPanel('phone_number', 'Número telofónico'),
             edit_handlers.FieldPanel('about_me', 'Acerca de mi')
-        ], "Información Básica"),
+        ], heading="Información Básica"),
         ImageChooserPanel('photo', 'Foto de Perfil'),
         edit_handlers.MultiFieldPanel([
             edit_handlers.StreamFieldPanel('experiences'),
             edit_handlers.StreamFieldPanel('studies'),
             edit_handlers.StreamFieldPanel('skills_and_workflows'),
         ], "Información Profesional"),
+        edit_handlers.MultiFieldPanel([
+            edit_handlers.FieldPanel('interests'),
+        ], heading="Gustos, Intereses, etc")
     ]
 
 
