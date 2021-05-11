@@ -6,9 +6,8 @@ from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
 from wagtail.admin import edit_handlers
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.users.views.users import edit
 
-from portafolio.home import blocks
+from . import blocks
 
 
 class HomePage(Page):

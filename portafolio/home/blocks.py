@@ -1,8 +1,5 @@
 from wagtail.core import blocks
 
-# TODO: Agregar el block WorkflowBlock para la sección de workflow
-# TODO: Agregar SkillBlock y WorkflowBlock a un block SkillsAndWorkflowsBlock.
-
 
 class SkillBlock(blocks.StructBlock):
     icon = blocks.CharBlock(
