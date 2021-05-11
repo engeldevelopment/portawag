@@ -6,9 +6,8 @@ from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
 from wagtail.admin import edit_handlers
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.users.views.users import edit
 
-from portafolio.home import blocks
+from . import blocks
 
 
 class HomePage(Page):
@@ -26,8 +25,13 @@ class HomePage(Page):
         related_name='+'
     )
 
-    body = StreamField([
+    studies = StreamField([
         ('studies', blocks.StudyBlock()),
+    ], null=True, blank=True)
+
+    skills_and_workflows = StreamField([
+        ('skills', blocks.SkillBlock()),
+        ('workflows', blocks.WorkflowBlock()),
     ], null=True, blank=True)
 
     content_panels = Page.content_panels + [
@@ -40,7 +44,10 @@ class HomePage(Page):
             edit_handlers.FieldPanel('about_me', 'Acerca de mi')
         ], "Información Básica"),
         ImageChooserPanel('photo', 'Foto de Perfil'),
-        edit_handlers.StreamFieldPanel('body'),
+        edit_handlers.MultiFieldPanel([
+            edit_handlers.StreamFieldPanel('studies'),
+            edit_handlers.StreamFieldPanel('skills_and_workflows'),
+        ], "Información Profesional"),
     ]
 
 
