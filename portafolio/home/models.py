@@ -46,6 +46,10 @@ class HomePage(Page):
         features=["bold", "italic"]
     )
 
+    awards = StreamField([
+        ('awards', blocks.AwardBlock())
+    ], null=True, blank=True)
+
     content_panels = Page.content_panels + [
         edit_handlers.MultiFieldPanel([
             edit_handlers.FieldPanel('name', 'Mi nombre'),
@@ -60,6 +64,7 @@ class HomePage(Page):
             edit_handlers.StreamFieldPanel('experiences'),
             edit_handlers.StreamFieldPanel('studies'),
             edit_handlers.StreamFieldPanel('skills_and_workflows'),
+            edit_handlers.StreamFieldPanel('awards'),
         ], "Información Profesional"),
         edit_handlers.MultiFieldPanel([
             edit_handlers.FieldPanel('interests'),

@@ -52,3 +52,11 @@ class StudyBlock(blocks.StructBlock):
     class Meta:
         icon = "edit"
         template = "home/blocks/study_block.html"
+
+
+class AwardBlock(blocks.StructBlock):
+    description = blocks.CharBlock(max_length=255)
+
+    class Meta:
+        icon = "pick"
+        template = "home/blocks/award_block.html"
