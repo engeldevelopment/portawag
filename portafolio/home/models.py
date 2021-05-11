@@ -25,6 +25,10 @@ class HomePage(Page):
         related_name='+'
     )
 
+    experiences = StreamField([
+        ('experiences', blocks.ExperienceBlock()),
+    ], null=True, blank=True)
+
     studies = StreamField([
         ('studies', blocks.StudyBlock()),
     ], null=True, blank=True)
@@ -45,6 +49,7 @@ class HomePage(Page):
         ], "Información Básica"),
         ImageChooserPanel('photo', 'Foto de Perfil'),
         edit_handlers.MultiFieldPanel([
+            edit_handlers.StreamFieldPanel('experiences'),
             edit_handlers.StreamFieldPanel('studies'),
             edit_handlers.StreamFieldPanel('skills_and_workflows'),
         ], "Información Profesional"),

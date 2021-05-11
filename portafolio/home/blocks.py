@@ -1,6 +1,22 @@
 from wagtail.core import blocks
 
 
+class ExperienceBlock(blocks.StructBlock):
+    position = blocks.CharBlock(max_length=80)
+    enterprise = blocks.CharBlock(max_length=200)
+    rol_description = blocks.TextBlock(max_length=255)
+    init_date = blocks.CharBlock(
+        help_text="Mes y año en el que iniciaste. Ej. Octubre 2012"
+    )
+    finished_date = blocks.CharBlock(
+        help_text="Mes y año en el que culminaste. Ej. Octubre 2018"
+    )
+
+    class Meta:
+        icon = "code"
+        template = "home/blocks/experience_block.html"
+
+
 class SkillBlock(blocks.StructBlock):
     icon = blocks.CharBlock(
         help_text="Escribe el nombre del Icono. Ej. fa-node-js"
