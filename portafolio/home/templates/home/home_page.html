@@ -76,7 +76,7 @@
 					{% endif %}
 					<a href="!#">{{ self.email }}</a>
 				</div>
-				<p class="lead mb-5">{{ self.about_me }}</p>
+                <div class="mb-5"> {{ self.about_me|richtext }} </div>
 				<div class="social-icons">
 					{% if settings.home.SocialMediaSetting.linkedin %}
 					<a class="social-icon" href="{{ settings.home.SocialMediaSetting.linkedin }}">

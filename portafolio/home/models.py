@@ -1,7 +1,6 @@
 from django.db import models
 from wagtail.contrib.settings.models import BaseSetting
 from wagtail.contrib.settings.registry import register_setting
-from wagtail.core import fields
 from wagtail.core.fields import StreamField
 
 from wagtail.core.models import Page
@@ -9,6 +8,7 @@ from wagtail.admin import edit_handlers
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from . import blocks
+from . import fields
 
 
 class HomePage(Page):
@@ -17,7 +17,11 @@ class HomePage(Page):
     email = models.EmailField(blank=True, null=True)
     address = models.CharField(max_length=200, null=True, blank=True)
     phone_number = models.CharField(max_length=10, null=True, blank=True)
-    about_me = models.TextField(max_length=255, blank=True, null=True)
+    about_me = fields.BoldAndItalicRichTextField(
+        "Acerca de mi",
+        null=True,
+        blank=True
+    )
     photo = models.ForeignKey(
         'wagtailimages.Image',
         on_delete=models.SET_NULL,
@@ -39,11 +43,10 @@ class HomePage(Page):
         ('workflows', blocks.WorkflowBlock()),
     ], null=True, blank=True)
 
-    interests = fields.RichTextField(
+    interests = fields.BoldAndItalicRichTextField(
         "Mis Intereses",
         null=True,
-        blank=True,
-        features=["bold", "italic"]
+        blank=True
     )
 
     awards = StreamField([
@@ -52,12 +55,12 @@ class HomePage(Page):
 
     content_panels = Page.content_panels + [
         edit_handlers.MultiFieldPanel([
-            edit_handlers.FieldPanel('name', 'Mi nombre'),
-            edit_handlers.FieldPanel('last_name', 'Mi apellido'),
-            edit_handlers.FieldPanel('address', 'Dirección'),
-            edit_handlers.FieldPanel('email', 'Correo'),
-            edit_handlers.FieldPanel('phone_number', 'Número telofónico'),
-            edit_handlers.FieldPanel('about_me', 'Acerca de mi')
+            edit_handlers.FieldPanel('name'),
+            edit_handlers.FieldPanel('last_name'),
+            edit_handlers.FieldPanel('address'),
+            edit_handlers.FieldPanel('email'),
+            edit_handlers.FieldPanel('phone_number'),
+            edit_handlers.FieldPanel('about_me', classname="lead")
         ], heading="Información Básica"),
         ImageChooserPanel('photo', 'Foto de Perfil'),
         edit_handlers.MultiFieldPanel([
