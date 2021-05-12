@@ -28,6 +28,7 @@
 </head>
 <body id="page-top">
 	{% wagtailuserbar %}
+	{% block content %}
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="sideNav">
 		<a class="navbar-brand js-scroll-trigger" href="#page-top">
@@ -175,6 +176,7 @@
 			</div>
 		</section>
 	</div>
+	{% endblock %}
 	<!-- Bootstrap core JS-->
 	<script src="{% static 'js/all.js' %}"></script>
 	<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
